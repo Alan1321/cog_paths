@@ -2,8 +2,9 @@ import sys
 import json
 
 class add_isslis_path:
-    def __init__(self, rasters):
+    def __init__(self, rasters, base_path):
         self.rasters = rasters
+        self.path = base_path
         self.add_spring2022()
         
     def add_spring2022(self):
@@ -22,7 +23,7 @@ class add_isslis_path:
                     filename = file[index1]
                     time = filename[25:31]
                     index1 = index1 + 1
-                    self.rasters[('ISS_LIS',f'2022{month}{date}', f'{time}')] = f"s3://ghrc-cog/ISS_LIS/Spring2023/ISS_LIS_SC_V2.1_2022{month}{date}_{time}_NQC.tif"        
+                    self.rasters[('ISS_LIS',f'2022{month}{date}', f'{time}')] = f"{self.path}/ISS_LIS_SC_V2.1_2022{month}{date}_{time}_NQC.tif"        
     
     def get_raster(self):
         return self.rasters
